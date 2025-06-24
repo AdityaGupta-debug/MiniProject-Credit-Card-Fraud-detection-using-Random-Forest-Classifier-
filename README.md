@@ -1,4 +1,4 @@
-redit Card Fraud Detection Dataset
+Credit Card Fraud Detection Dataset
 📌 About the Dataset
 This project uses a credit card fraud detection dataset consisting of transactions made by European cardholders in September 2013. It contains 284,807 transactions over two days, out of which only 492 are fraudulent, making it a highly imbalanced dataset.
 
