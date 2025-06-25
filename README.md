@@ -1,45 +1,70 @@
-Credit Card Fraud Detection Dataset
-📌 About the Dataset
-This project uses a credit card fraud detection dataset consisting of transactions made by European cardholders in September 2013. It contains 284,807 transactions over two days, out of which only 492 are fraudulent, making it a highly imbalanced dataset.
+# 💳 Credit Card Fraud Detection Dataset
 
-Due to confidentiality, most features have been anonymized using Principal Component Analysis (PCA). Only the Time and Amount columns retain their original meaning. The target column is Class, where:
+## 📌 About the Dataset
 
-0 → Legitimate transaction
+This project uses a real-world dataset consisting of **credit card transactions made by European cardholders in September 2013**.  
+It contains **284,807 transactions over two days**, of which only **492 are fraudulent** — making this a **highly imbalanced classification problem** (~0.17% fraud rate).
 
-1 → Fraudulent transaction
+Due to confidentiality, most features have been anonymized using **Principal Component Analysis (PCA)**.  
+Only `Time` and `Amount` retain their original values.
 
-The major challenge with this dataset is detecting fraud with very few positive cases (~0.17%).
+The target column is `Class`, where:
+- `0` → Legitimate transaction  
+- `1` → Fraudulent transaction
 
-🧩 Features
-Time: Seconds elapsed since the first transaction
+---
 
-V1 to V28: PCA components of original features
+## 🧩 Features
 
-Amount: Transaction amount in Euros
+- `Time`: Time in seconds since the first transaction  
+- `V1` to `V28`: Principal components obtained via PCA  
+- `Amount`: Transaction amount in Euros  
+- `Class`: Target variable (0 = Non-fraud, 1 = Fraud)
 
-Class: Target variable (0 → Non-fraud, 1 → Fraud)
+---
 
-⚙️ Algorithms Used
-I experimented with several machine learning algorithms to solve this classification problem:
+## ⚙️ Algorithms Used
 
-Logistic Regression
+I experimented with multiple machine learning models to classify transactions as fraudulent or legitimate:
 
-Support Vector Classifier (SVC)
+- 📈 Logistic Regression  
+- 🔵 Support Vector Classifier (SVC)  
+- 🌲 Decision Tree Classifier  
+- 📍 K-Nearest Neighbors (KNN)  
+- 🌳 Random Forest Classifier ✅
 
-Decision Tree Classifier
+Out of all, **Random Forest** performed the best in terms of:
+- **Precision**
+- **Recall**
+- **Overall accuracy**
 
-K-Nearest Neighbors (KNN)
+Its **ensemble structure** made it robust to noise and well-suited for handling the **class imbalance**.
 
-Random Forest Classifier
+---
 
-After evaluating all models, Random Forest gave the best performance in terms of precision, recall, and overall accuracy. It handled the imbalanced dataset better due to its ensemble nature and robustness.
+## 📈 Challenges & Techniques Used
 
-📈 Challenges & Techniques Used
-Class Imbalance: Used resampling and evaluation metrics like ROC-AUC and F1-score to better assess model performance.
+### ⚠️ Class Imbalance
+- Applied **resampling techniques** (e.g., undersampling)  
+- Focused on **Recall**, **Precision**, and **F1-score** over plain Accuracy  
+- Used **ROC-AUC** to assess model discrimination
 
-Feature Scaling: Scaled Amount and Time features for algorithms like Logistic Regression and SVC.
+### 📊 Feature Scaling
+- Scaled `Time` and `Amount` for models sensitive to feature magnitude (e.g., Logistic Regression, SVC)
 
-Model Evaluation: Focused on recall and precision over accuracy, given the importance of minimizing false negatives in fraud detection.
+### ✅ Model Evaluation
+- Accuracy was not the primary metric due to imbalance  
+- **False negatives** were minimized as detecting fraud is more critical than false alarms
 
-📚 Conclusion
-The Random Forest Classifier achieved the most reliable results on this dataset, making it the best choice for this particular fraud detection problem. Further improvements could involve using ensemble methods like Balanced Random Forest or applying anomaly detection techniques.
+---
+
+## 📚 Conclusion
+
+The **Random Forest Classifier** delivered the **most reliable and balanced performance**, making it the best model for this fraud detection task.  
+To further enhance detection:
+
+- Consider **Balanced Random Forests**  
+- Apply **SMOTE** or **ADASYN** for synthetic oversampling  
+- Explore **anomaly detection methods** like Isolation Forest or Autoencoders
+
+This project emphasizes the importance of **careful metric selection and model tuning** when working with imbalanced datasets in high-stakes domains like fraud detection.
